@@ -20,7 +20,6 @@ import core.basesyntax.strategy.OperationStrategyImpl;
 import java.util.List;
 import java.util.Map;
 
-
 public class Main {
     private static final String inputFilePath = "src\\main\\resources\\inputValue.csv";
     private static final String outputFilePath = "finalReport.csv";
