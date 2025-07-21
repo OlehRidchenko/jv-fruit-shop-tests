@@ -6,17 +6,24 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import core.basesyntax.db.Storage;
 import java.util.Map;
+
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class StorageDaoImplTest {
-    private final StorageDaoImpl storageDao = new StorageDaoImpl();
+    private StorageDaoImpl storageDao;
 
     @BeforeEach
     void setUp() {
-        Storage.fruits.clear();
+        storageDao = new StorageDaoImpl();
         Storage.fruits.put("apple", 50);
         Storage.fruits.put("banana", 30);
+    }
+
+    @AfterEach
+    void init() {
+        Storage.fruits.clear();
     }
 
     @Test

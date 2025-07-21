@@ -9,12 +9,19 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class ReadFromFileImplTest {
     private static final String dataEmpty = "src/main/resources/emptyFile.csv";
     private static final String dataNonExist = "src/main/resources/nonExistFile.csv";
-    private final ReadFromFile fileReader = new ReadFromFileImpl();
+    private ReadFromFile fileReader;
+
+    @BeforeEach
+    void setUp() {
+        fileReader = new ReadFromFileImpl();
+    }
 
     @Test
     void read_ReadingDataFromValidFile_Ok() throws IOException {

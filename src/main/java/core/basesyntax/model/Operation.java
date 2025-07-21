@@ -6,15 +6,15 @@ public enum Operation {
     PURCHASE("p"),
     RETURN("r");
 
-    private final String firstLetterOfOperation;
+    private final String code;
 
     Operation(String firstLetterOfOperation) {
-        this.firstLetterOfOperation = firstLetterOfOperation;
+        this.code = firstLetterOfOperation;
     }
 
     public static Operation fromCode(String code) {
         for (Operation operation : Operation.values()) {
-            if (operation.firstLetterOfOperation.equals(code)) {
+            if (operation.code.equals(code)) {
                 return operation;
             }
         }

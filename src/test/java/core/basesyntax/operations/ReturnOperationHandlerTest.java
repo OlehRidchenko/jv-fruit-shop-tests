@@ -10,12 +10,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class ReturnOperationHandlerTest {
-    private final OperationHandler handler = new ReturnOperationHandler();
-    private FruitTransaction fruitTransaction = new FruitTransaction();
+    private OperationHandler handler;
+    private FruitTransaction fruitTransaction;
 
     @BeforeEach
     void setUp() {
         Storage.fruits.clear();
+        handler = new ReturnOperationHandler();
+        fruitTransaction = new FruitTransaction();
     }
 
     @Test

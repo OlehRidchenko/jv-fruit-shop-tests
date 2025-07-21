@@ -12,13 +12,12 @@ import org.junit.jupiter.api.Test;
 class ReportWriterImplTest {
     private static final String testFile = "src/main/resources/testFile.csv";
     private ReportWriter writer;
-    private List<String> listOfData;
     private String data;
 
     @BeforeEach
     void setUp() {
         writer = new ReportWriterImpl();
-        listOfData = List.of("fruit,quantity",
+        List<String> listOfData = List.of("fruit,quantity",
                 "banana,150", "apple,90", "pineapple,215", "cucumber,50");
         data = String.join(System.lineSeparator(), listOfData);
     }

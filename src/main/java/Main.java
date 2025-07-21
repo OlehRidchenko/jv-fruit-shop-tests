@@ -21,31 +21,26 @@ import java.util.List;
 import java.util.Map;
 
 public class Main {
-    private static final String inputFilePath = "src\\main\\resources\\inputValue.csv";
-    private static final String outputFilePath = "finalReport.csv";
+    private static final String INPUT_FILE = "src/main/resources/inputValue.csv";
+    private static final String OUTPUT_FILE = "src/main/resources/finalReport.csv";
 
     public static void main(String[] args) {
 
-        // 1. Read the data from the input CSV file
         ReadFromFile fileReader = new ReadFromFileImpl();
-        List<String> inputReport = fileReader.read(inputFilePath);
+        List<String> inputReport = fileReader.read(INPUT_FILE);
 
-        // 2. Convert the incoming data into FruitTransactions list
         DataConverter dataConverter = new DataConverterImpl();
         final List<FruitTransaction> transactions =
                 dataConverter.convertToTransactions(inputReport);
 
-        // 3. Create and feel the map with all OperationHandler implementations
         ShopService shopService = getShopService();
         shopService.process(transactions);
 
-        // 5. Generate report based on the current Storage state
         ReportGenerator reportGenerator = new ReportGeneratorImpl();
         String resultingReport = reportGenerator.getReport();
 
-        // 6. Write the received report into the destination file/
         ReportWriter fileWriter = new ReportWriterImpl();
-        fileWriter.write(resultingReport, outputFilePath);
+        fileWriter.write(resultingReport, OUTPUT_FILE);
     }
 
     private static ShopService getShopService() {
@@ -56,7 +51,6 @@ public class Main {
                 Operation.SUPPLY, new SupplyOperationHandler());
         OperationStrategy operationStrategy = new OperationStrategyImpl(operationHandlers);
 
-        // 4. Process the incoming transactions with applicable OperationHandler implementations
         return new ShopServiceImpl(operationStrategy);
     }
 }
