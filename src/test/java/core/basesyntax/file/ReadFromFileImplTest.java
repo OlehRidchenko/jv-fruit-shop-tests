@@ -13,8 +13,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class ReadFromFileImplTest {
-    private static final String dataEmpty = "src/main/resources/emptyFile.csv";
-    private static final String dataNonExist = "src/main/resources/nonExistFile.csv";
+    private static final String dataEmpty = "src/main/resourcesTest/emptyFileTest.csv";
+    private static final String dataNonExist = "src/main/resourcesTest/nonExistFileTest.csv";
     private ReadFromFile fileReader;
 
     @BeforeEach
@@ -39,14 +39,9 @@ class ReadFromFileImplTest {
     }
 
     @Test
-    void read_FileIsEmpty_Ok() {
+    void read_FileIsEmptyAndNotNull_Ok() {
         List<String> data = fileReader.read(dataEmpty);
         assertTrue(data.isEmpty());
-    }
-
-    @Test
-    void read_FileIsNotNull_Ok() {
-        List<String> data = fileReader.read(dataEmpty);
         assertNotNull(data);
     }
 }

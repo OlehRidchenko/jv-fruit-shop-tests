@@ -1,6 +1,5 @@
 package core.basesyntax.file;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -10,7 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class ReportWriterImplTest {
-    private static final String testFile = "src/main/resources/testFile.csv";
+    private static final String testFile = "src/main/resourcesTest/testFile.csv";
     private ReportWriter writer;
     private String data;
 
@@ -30,12 +29,22 @@ class ReportWriterImplTest {
     }
 
     @Test
-    void write_WriteDataToFile_Ok() {
-        writer = new ReportWriterImpl();
-        String directoryPath = "src/main/resources";
+    void write_directoryPathInsteadOfFile_NotOk() {
+        String directoryPath = "src/main/resourcesTest";
+
         RuntimeException exception = assertThrows(RuntimeException.class,
                 () -> writer.write(data, directoryPath));
-        assertEquals("Error writing to file: " + directoryPath,
-                exception.getMessage());
+        String expected = "Error writing to file: ";
+        assertTrue(exception.getMessage().contains(expected));
+    }
+
+    @Test
+    void write_InvalidFilePath_NotOk() {
+        String invalidDirectoryPath = "?:/invalid/file.csv";
+
+        RuntimeException exception = assertThrows(RuntimeException.class,
+                () -> writer.write(data, invalidDirectoryPath));
+        String expected = "Error writing to file: ";
+        assertTrue(exception.getMessage().contains(expected));
     }
 }
